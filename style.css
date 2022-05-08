@@ -9,8 +9,15 @@
     --paragraph: hsl(210, 9%, 31%);
     --brand-beige: hsl(39, 100%, 97%);
     --brand-light: hsl(148,23%,89%);
+    --brand-dark: hsl(170, 100%, 14%);
     font-size: 62.5%;
     --nav-height: 7.2rem;
+
+    --bg-light: hsl(180, 14%, 97%)
+}
+
+html{
+    scroll-behavior: smooth;
 }
 
 html,
@@ -24,6 +31,7 @@ body{
     font-size: 1.6rem;
     text-align: center;
     overflow: overlay;
+    background-color: var(--bg-light);
 }
 
 .wrapper {
@@ -36,51 +44,53 @@ ul{
     list-style: none;
 }
 
-/*==== HEADER ===============================*/
-header{
-    margin-top: calc(4.1rem + var(--nav-height));
+img {
+    max-width: 100%;
 }
 
-header::before{
-    content: "";
-    width: 100%;
-    height: calc(108rem + var(--nav-height));
-    display: block;
-    position: absolute;
-    background-color: var(--brand-light);
-    top: 0;
-    left: 0;
-    z-index: -1;
+section{
+    padding-block: 10rem;
 }
 
-header h4{
+section header h4{
     font-size: 1.4rem;
+    font-weight: 700;
+    line-height: 150%;
+    letter-spacing: 0.08rem;
     color: var(--primary-color);
+    text-transform: uppercase;
     margin-bottom: 1.6rem;
 }
 
-header h1{
+section header h2{
+    font-size: 3.0rem;
+    line-height: 3.9rem;
+    text-align: center;
+    color: var(--headline);
+}
+
+section header h1{
     font-size: 3.4rem;
     color: var(--headline);
     line-height: 130%;
     margin-bottom: 2.4rem;
 }
 
-header p{
-    font-size: 1.8rem;
-    line-height: 150%;
+section .content p{
     font-weight: 400;
-    color: var(paragraph);
-    margin-bottom: 3.4rem;
+    font-size: 1.6rem;
+    line-height: 150%;
+    color: var(--paragraph);
 }
 
-header button{
+.button{
     background: var(--primary-color);
     border: none;
     border-radius: 4rem;
     margin-bottom: 6rem;
-    height: 6.2rem;
-    width: 26.3rem;
+
+    padding: 1.6rem 3.2rem;
+    width: fit-content;
 
     font-weight: 700;
     color: #fff;
@@ -91,44 +101,12 @@ header button{
     justify-content: center;
     gap: 1.6rem;
 
-    margin-right: auto;
-    margin-left: auto;
+    text-decoration: none;
+    transition: background 300ms;
 }
 
-header img{
-    width: 26.4rem;
-    display: block;
-    margin-inline: auto;
-    object-position: 0 2rem;
-}
-
-.stats{
-    width: 32.7rem;
-    height: 47rem;
-    margin-inline: auto;/*aliamento margin dois lado*/
-
-    background-color: var(--brand-beige);
-    border: 1px solid var(--brand-light);
-    border-radius: 0.6rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 6rem;
-    padding-block: 4rem;
-}
-
-.stat h3{
-    font-size: 4.8rem;
-    color: var(--headline);
-    line-height: 130%;
-    margin-bottom: 0.4rem;
-}
-
-.stat p{
-    margin: 0;
-    color: var(--primary-color);
-    font-size: 1.6rem;
-    line-height: 150%;
+.button:hover {
+    background-color: var(--brand-dark);
 }
 
 /*==== NAVIGATION =========================*/
@@ -137,8 +115,8 @@ nav{
     height: var(--nav-height);
     position: fixed;
     top: 0;
-    left: 50%;
-    transform: translateX(-50%);
+    width: 100vw;
+    z-index: 100;
 }
 
 nav .wrapper{
@@ -149,10 +127,9 @@ nav .wrapper{
 
 nav.scroll{
     background: var(--primary-color);
-    width: 100vw;
 }
 
-nav.scroll svg:nth-child(1) path{
+nav.scroll .logo path{  
     fill: #fff;
 }
 
@@ -172,7 +149,7 @@ body.menu-expanded{
 }
 
 body.menu-expanded > :not(nav){
-    display: none;
+    visibility: hidden;
 }
 
 .menu,
@@ -188,6 +165,10 @@ body.menu-expanded .close-menu{
     visibility: visible;
 }
 
+.menu{
+    transform: translateY(100%);
+}
+
 body.menu-expanded .menu{
     position: fixed;
     top: 0;
@@ -196,10 +177,9 @@ body.menu-expanded .menu{
     width: 100vw;
     height: 100vh;
     padding-top: var(--nav-height);
-}
+    transition: transform 300ms;
+    transform: translateY(0);
 
-body.menu-expanded nav{
-    position: relative;
 }
 
 .menu ul:nth-child(1){
@@ -255,4 +235,131 @@ body.menu-expanded .logo path{
 
 body.menu-expanded button path{
     stroke: #fff;
+}
+
+/*==== #HOME ===============================*/
+#home{
+    padding-top: calc(4.1rem + var(--nav-height));
+}
+
+#home::before{
+    content: "";
+    width: 100%;
+    height: calc(108rem + var(--nav-height));
+    display: block;
+    position: absolute;
+    background-color: var(--brand-light);
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+#home p{
+    font-size: 1.8rem;
+    line-height: 150%;
+    font-weight: 400;
+    color: var(paragraph);
+    margin-bottom: 3.4rem;
+}
+
+#home .button{
+    margin-right: auto;
+    margin-left: auto;
+}
+
+#home img{
+    width: 26.4rem;
+    display: block;
+    margin-inline: auto;
+    object-position: 0 2rem;
+}
+
+#home .stats{
+    width: 32.7rem;
+    height: 47rem;
+    margin-inline: auto;/*aliamento margin dois lado*/
+
+    background-color: var(--brand-beige);
+    border: 1px solid var(--brand-light);
+    border-radius: 0.6rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 6rem;
+    padding-block: 4rem;
+}
+
+#home .stat h3{
+    font-size: 4.8rem;
+    color: var(--headline);
+    line-height: 130%;
+    margin-bottom: 0.4rem;
+}
+
+#home .stat p{
+    margin: 0;
+    color: var(--primary-color);
+    font-size: 1.6rem;
+    line-height: 150%;
+}
+
+/*==== SERVICES ===============================*/
+#services h2{
+    margin-bottom: 6.0rem;
+}
+
+#services .cards{
+    display: flex;
+    flex-direction: column;
+    gap: 3.2rem;
+}
+
+#services .card{
+    padding: 2.4rem;
+    text-align: left;
+    background: #FFFFFF;
+/* Primary Colors/brand-green-light */
+    border: 1px solid var(--brand-light);
+    border-radius: 0.6rem;
+}
+
+#services .card h3{
+    margin-block: 1.6rem;
+}
+
+/*==== about ===============================*/
+#about {
+    text-align: left;
+    background-color: var(--brand-beige);
+}
+#about header h2{
+    margin-bottom: 2.4rem;
+    text-align: left;
+}
+
+#about .content p{
+    margin-top: 2.4rem;
+    margin-bottom: 6rem;
+}
+
+/*==== #CONTACT ===============================*/
+#contact{
+    text-align: left;
+}
+
+#contact header{
+    margin-bottom: 3.2rem;
+}
+
+#contact ul{
+    display: flex;
+    flex-direction: column;
+    gap: 1.6rem;
+    margin-bottom: 3.2rem;
+}
+
+#contact ul li{
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
 }
